@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ammulu ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{
+  background: radial-gradient(circle at top, #ffb3d9, #8b5cf6);
+  overflow:hidden;
+}
+.screen{
+  width:100vw;height:100vh;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+}
+.screen.active{display:flex}
+h1,h2,p{
+  color:#fff;
+  text-shadow:0 0 20px rgba(255,255,255,0.9);
+}
+button{
+  margin-top:30px;
+  padding:16px 34px;
+  border:none;
+  border-radius:40px;
+  background:#fff;
+  color:#ff2f92;
+  font-size:18px;
+  cursor:pointer;
+  box-shadow:0 0 30px #fff;
+}
+.big-heart{
+  font-size:120px;
+  animation:heartbeat 1.4s infinite;
+  filter:drop-shadow(0 0 40px #fff);
+}
+@keyframes heartbeat{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.3)}
+  100%{transform:scale(1)}
+}
+.glow-text{
+  animation:glow 2s infinite alternate;
+}
+@keyframes glow{
+  from{text-shadow:0 0 10px #fff}
+  to{text-shadow:0 0 40px #ffd6ff}
+}
+.floating span{
+  position:absolute;
+  bottom:-60px;
+  font-size:30px;
+  animation:float 7s linear infinite;
+}
+@keyframes float{
+  0%{transform:translateY(0);opacity:1}
+  100%{transform:translateY(-130vh);opacity:0}
+}
+.music-btn{
+  position:fixed;
+  top:15px;
+  right:15px;
+  font-size:26px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="music-btn" onclick="toggleMusic()">🎶</div>
+
+<audio id="bgm" loop>
+  <source src="https://cdn.pixabay.com/audio/2023/03/14/audio_32d98f57b1.mp3">
+</audio>
+
+<!-- Screen 1 -->
+<div class="screen active">
+  <div class="big-heart">💖</div>
+  <h1 class="glow-text">Ammulu 💕</h1>
+  <p>You are pure magic ✨</p>
+  <button onclick="next()">Tap Here 😘</button>
+</div>
+
+<!-- Screen 2 -->
+<div class="screen">
+  <div class="big-heart">💗</div>
+  <h2>You light up everything 🌸</h2>
+  <p>Your smile is my favorite view 😊</p>
+  <button onclick="next()">Next 💞</button>
+</div>
+
+<!-- Screen 3 -->
+<div class="screen">
+  <div class="big-heart">💓</div>
+  <h2>Your kindness 🌷</h2>
+  <p>Makes you the most beautiful soul ❤️</p>
+  <button onclick="next()">Continue 💘</button>
+</div>
+
+<!-- Screen 4 -->
+<div class="screen">
+  <div class="big-heart">💝</div>
+  <h2>You are special ✨</h2>
+  <p>Rare, precious, and deeply loved 🥰</p>
+  <button onclick="next()">More 💖</button>
+</div>
+
+<!-- Screen 5 -->
+<div class="screen">
+  <div class="big-heart">💞</div>
+  <h2>You inspire me 🌈</h2>
+  <p>Just by being you 💫</p>
+  <button onclick="next()">Almost There 💕</button>
+</div>
+
+<!-- Screen 6 -->
+<div class="screen">
+  <h1 class="glow-text">Tap to Reveal 💌</h1>
+  <button onclick="reveal()">Open My Heart 💖</button>
+  <p id="final" style="display:none;margin-top:25px;">
+    Ammulu 🌸<br>
+    You are strong, beautiful, caring, and amazing ❤️<br>
+    Every moment with you feels brighter ✨<br>
+    I adore you endlessly 😘
+  </p>
+</div>
+
+<div class="floating"></div>
+
+<script>
+let i=0;
+const screens=document.querySelectorAll('.screen');
+
+function next(){
+  screens[i].classList.remove('active');
+  i++;
+  if(i<screens.length){screens[i].classList.add('active')}
+}
+
+function reveal(){
+  document.getElementById('final').style.display='block';
+}
+
+function toggleMusic(){
+  const m=document.getElementById('bgm');
+  m.paused?m.play():m.pause();
+}
+
+function spawn(){
+  const s=document.createElement('span');
+  s.innerHTML=Math.random()>0.5?'💖':'💗';
+  s.style.left=Math.random()*100+'vw';
+  s.style.animationDuration=(4+Math.random()*4)+'s';
+  document.querySelector('.floating').appendChild(s);
+  setTimeout(()=>s.remove(),8000);
+}
+setInterval(spawn,250);
+</script>
+
+</body>
+</html>
